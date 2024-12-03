@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
+@mixin font-family($font-family) {
+  font-family: "#{$font-family}", sans-serif; // Append sans-serif
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+// List of weights you want to support
+$weights: (300, 400, 500, 600, 700, 800);
+
+// Define primary and secondary font families
+$fonts: (
+  primary: "Source Sans 3",
+  secondary: "Open Sans",
+);
+
+// Loop through font families and weights to create unique classes
+@each $name, $font-family in $fonts {
+  @each $weight in $weights {
+    .#{$name}-font-#{$weight} {
+      @include font-family($font-family);
+      font-weight: $weight; // Set the font weight separately
+    }
+  }
+}
